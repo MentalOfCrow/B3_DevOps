@@ -1,2 +1,3 @@
 # B3_DevOps
-Apprentissage du devops avec gitlabs
+Apprentissage du devops avec gitlabs pour l'apprentissage
+
