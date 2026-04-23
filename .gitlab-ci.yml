@@ -6,8 +6,8 @@ build-site:
   tags:
     - windows
   script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker login -u gitlab-ci-token -p $env:CI_JOB_TOKEN $env:CI_REGISTRY
+    - docker build -t "$env:CI_REGISTRY_IMAGE:$env:CI_COMMIT_REF_SLUG" .
+    - docker push "$env:CI_REGISTRY_IMAGE:$env:CI_COMMIT_REF_SLUG"
   only:
     - main
