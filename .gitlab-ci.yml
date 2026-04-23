@@ -1,15 +1,16 @@
 stages:
   - build
 
-build-site:
+build_et_push_dockerhub:
   stage: build
   tags:
     - windows
   script:
-    - $IMAGE_TAG = "${env:CI_REGISTRY_IMAGE}:${env:CI_COMMIT_REF_SLUG}"
-    - echo $IMAGE_TAG
-    - docker login -u gitlab-ci-token -p $env:CI_JOB_TOKEN $env:CI_REGISTRY
-    - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
+    - echo "Connexion a Docker Hub..."
+    - docker login -u $env:DOCKER_USER -p $env:DOCKER_PASSWORD
+    - echo "Construction de l'image..."
+    - docker build -t makitetsuu/makidocker:latest .
+    - echo "Envoi..."
+    - docker push makitetsuu/makidocker:latest
   only:
     - main
