@@ -6,8 +6,10 @@ build-site:
   tags:
     - windows
   script:
+    - $IMAGE_TAG = "${env:CI_REGISTRY_IMAGE}:${env:CI_COMMIT_REF_SLUG}"
+    - echo $IMAGE_TAG
     - docker login -u gitlab-ci-token -p $env:CI_JOB_TOKEN $env:CI_REGISTRY
-    - docker build -t "$env:CI_REGISTRY_IMAGE:$env:CI_COMMIT_REF_SLUG" .
-    - docker push "$env:CI_REGISTRY_IMAGE:$env:CI_COMMIT_REF_SLUG"
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
   only:
     - main
